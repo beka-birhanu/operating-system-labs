@@ -1,1 +1,18 @@
 *.o
+
+# Ignore compiled dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Ignore executable files
+*.out
+*.exe
+
+# Ignore compiled binary files
+*.bin
+
+# Ignore intermediate build files
+*.obj
+*.lib
+*.a
