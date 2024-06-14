@@ -15,7 +15,7 @@ pthread_cond_t consumer_cond = PTHREAD_COND_INITIALIZER;
 void *producer() {
     for (int i = 0; i < N; i++) {
         pthread_mutex_lock(&mutex);
-        while (count == N) {
+        if (count == N) {
             printf("\nProducer: Array is full, waiting for consumer to consume.\n");
             pthread_cond_wait(&producer_cond, &mutex);
         }
@@ -35,7 +35,7 @@ void *producer() {
 void *consumer() {
     for (int i = 0; i < N; i++) {
         pthread_mutex_lock(&mutex);
-        while (count == 0) {
+        if (count == 0) {
             printf("\nConsumer: Array is empty, waiting for producer to produce.\n");
             pthread_cond_wait(&consumer_cond, &mutex);
         }
